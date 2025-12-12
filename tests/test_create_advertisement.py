@@ -27,19 +27,6 @@ class TestCreateAdvertisement:
         
         expected_text = "Чтобы разместить объявление, авторизуйтесь"
         assert expected_text in modal_title.text, f"Заголовок должен содержать '{expected_text}'"
-    
-    
-    @pytest.fixture(autouse=True)
-    def setup(self, driver, wait):
-        """Фикстура для авторизации перед тестом создания объявления"""
-        self.driver = driver
-        self.wait = wait
-        
-        # Авторизуемся
-        self.driver.get(TestData.BASE_URL)
-        
-        login_button = self.driver.find_element(*MainPageLocators.LOGIN_REGISTRATION_BUTTON)
-        login_button.click()
         
         email_input = self.wait.until(
             EC.visibility_of_element_located(AuthModalLocators.LOGIN_EMAIL_INPUT)
